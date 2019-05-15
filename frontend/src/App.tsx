@@ -1,15 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import { Container, Row, Col, CardColumns } from 'react-bootstrap';
 import PetCard from './PetCard';
+import Pet from './Pet';
 
 const App: React.FC = () => {
-  var mockedPets = [
-    { id: "1", name: "Berty", description: "Has a good nose for truffles", owner: "Sophie" },
-    { id: "2", name: "Argo", description: "A superhero (of the dog world)", owner: "Charles" },
-    { id: "3", name: "Fred", description: "Has opinions about sausages", owner: "Mike" },
-  ];
+  const [pets, setPets] = useState<Array<Pet>>([]);
+
+  useEffect(() => {
+    const updatePets = async () => {
+        const response = await fetch(`https://codess-shelter.azurewebsites.net/api/v1/pets`);
+        const pets = await response.json();
+        setPets(pets);
+    };
+    updatePets();
+  }, []);
 
   return (
     <Container>
@@ -17,7 +22,7 @@ const App: React.FC = () => {
       <Col>
         <CardColumns>
         {
-          mockedPets.map((pet) => <PetCard key={pet.id} pet={pet} />)
+          pets.map((pet) => <PetCard key={pet.id} pet={pet} />)
         }
         </CardColumns>
       </Col>
