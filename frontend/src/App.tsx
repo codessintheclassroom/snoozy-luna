@@ -6,9 +6,9 @@ import PetCard from './PetCard';
 
 const App: React.FC = () => {
   var mockedPets = [
-    { id: "1", name: "Berty", description: "Has a good nose for truffles" },
-    { id: "2", name: "Argo", description: "A superhero (of the dog world)" },
-    { id: "3", name: "Fred", description: "Has opinions about sausages" },
+    { id: "1", name: "Berty", description: "Has a good nose for truffles", owner: "Sophie" },
+    { id: "2", name: "Argo", description: "A superhero (of the dog world)", owner: "Charles" },
+    { id: "3", name: "Fred", description: "Has opinions about sausages", owner: "Mike" },
   ];
 
   return (
